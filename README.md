@@ -169,5 +169,6 @@ Make sure to set `GROQ_API_KEY` in your environment or a `.env` file before runn
 ---
 
 ## 🎥 Demo Video
-
-[![Demo Video](https://img.youtube.com/vi/5z_dZBzeJ_k/0.jpg)](https://youtu.be/5z_dZBzeJ_k)
+Please click here:
+[![Demo Video](https://img.youtube.com/vi/5z_dZBzeJ_k/0.jpg)](https://youtu.be/5z_dZBzeJ_k)  
+or use link: https://youtu.be/5z_dZBzeJ_k
