@@ -9,7 +9,7 @@
 | Feature | Details |
 |---|---|
 | File Upload | CSV, XLSX, XLS — up to 50 MB |
-| AI Regex Generation | Describe patterns in natural language; Claude converts them to regex |
+| AI Regex Generation | Describe patterns in natural language; Groq AI (Llama 3.3) converts them to regex |
 | Preview Matches | See how many cells match before committing |
 | Find & Replace | Applies regex replacement across chosen text columns |
 | Download | Export the processed file as CSV or XLSX |
@@ -61,7 +61,7 @@ regex-app/
 
 - Python 3.10+
 - Node.js 18+
-- An [Anthropic API key](https://console.anthropic.com)
+- A [Groq API key](https://console.groq.com) (free)
 
 ---
 
@@ -80,7 +80,7 @@ pip install -r requirements.txt
 
 # 4. Create your .env file
 cp .env.example .env
-# Open .env and set your ANTHROPIC_API_KEY and DJANGO_SECRET_KEY
+# Open .env and set your GROQ_API_KEY
 
 # 5. Apply database migrations
 python manage.py migrate
@@ -124,8 +124,9 @@ The app will open at **http://localhost:3000**
 | POST | `/api/generate-regex/` | NL description → regex (LLM) |
 | POST | `/api/preview/` | Count pattern matches (no replacement) |
 | POST | `/api/replace/` | Apply regex replacement |
-| POST | `/api/download/` | Download processed file as CSV/XLSX |
-| POST | `/api/transform/` | Optional LLM column transformation |
+| POST | `/api/download/` | Download regex-processed file as CSV/XLSX |
+| POST | `/api/export/` | Download transform result as CSV/XLSX |
+| POST | `/api/transform/` | LLM column transformation (summarise / classify) |
 
 ---
 
@@ -139,7 +140,7 @@ docker-compose up --build
 # The API will be at http://localhost:8000
 ```
 
-Make sure to set `ANTHROPIC_API_KEY` in your environment or a `.env` file before running Docker.
+Make sure to set `GROQ_API_KEY` in your environment or a `.env` file before running Docker.
 
 ---
 
@@ -147,7 +148,7 @@ Make sure to set `ANTHROPIC_API_KEY` in your environment or a `.env` file before
 
 | Variable | Required | Description |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | ✅ | Your Claude API key |
+| `GROQ_API_KEY` | ✅ | Your Groq API key (free at console.groq.com) |
 | `DJANGO_SECRET_KEY` | ✅ | Django secret key (change in production!) |
 | `DEBUG` | ❌ | `True` for dev, `False` for production |
 | `ALLOWED_HOSTS` | ❌ | Comma-separated allowed hostnames |
@@ -159,7 +160,7 @@ Make sure to set `ANTHROPIC_API_KEY` in your environment or a `.env` file before
 
 1. Upload a CSV with a column containing email addresses
 2. Type: *"Find all email addresses"*
-3. Click **Generate Regex with AI** → Claude generates `\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z]{2,7}\b`
+3. Click **Generate Regex with AI** → Groq AI generates `\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z]{2,7}\b`
 4. Select the email column, enter `REDACTED` as replacement
 5. Click **Preview Matches** to confirm
 6. Click **Apply Replacement** to process
@@ -168,15 +169,6 @@ Make sure to set `ANTHROPIC_API_KEY` in your environment or a `.env` file before
 ---
 
 ## 🎥 Demo Video
-
-> _Record and embed your demo video here after deployment._
-
-```md
-[![Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://youtu.be/YOUR_VIDEO_ID)
-```
-
----
-
-## 📄 License
-
-MIT
+Please click here:
+[![Demo Video](https://img.youtube.com/vi/5z_dZBzeJ_k/0.jpg)](https://youtu.be/5z_dZBzeJ_k)  
+or use link: https://youtu.be/5z_dZBzeJ_k
